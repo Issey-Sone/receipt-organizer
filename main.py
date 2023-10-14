@@ -1,13 +1,13 @@
 import os
 import pprint
 import requests
-from flask import Flask, request, render_template, jsonify, redirect, url_for
+from flask import Flask, request, render_template, jsonify, redirect, url_for, session
 import json
 from pymongo import MongoClient
 
 
 app = Flask(__name__)
-
+app.config['SECRET_KEY'] = 'asdfskfjkassdakf140-1'
 # Directory to store uploaded receipts
 UPLOAD_FOLDER = 'uploads'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
@@ -37,8 +37,9 @@ def process_receipt_with_taggun(filename, file_path):
     return response.json()
 
 
-def convert_to_desired_json(taggun_response):
+def convert_to_desired_json(taggun_response, username):
     desired_json = {
+        "username": username,
         "date": taggun_response.get('date', {}).get('data', ''),
         "productLineItems": [],
         "merchantAddress": taggun_response.get('merchantAddress', {}).get('data', ''),
@@ -94,7 +95,9 @@ def insert_user(username, password):
 
 @app.route('/')
 def index():
-    return render_template('login.html')
+    if 'user' not in session:
+        return redirect(url_for('login'))
+    return render_template('index.html')
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
@@ -117,6 +120,7 @@ def login():
         password = request.form['password']
         if check_existense(username)==True:
             if check_password(username, password)==True:
+                session['user'] = username
                 return redirect(url_for('index'))
             else:
                 return 'wrong password'
@@ -127,6 +131,7 @@ def login():
 @app.route('/logout')
 def logout():
     # Implement your logout logic
+    session.clear()
     return redirect(url_for('login'))
 
 @app.route('/upload', methods=['POST'])
@@ -140,7 +145,7 @@ def upload_receipt():
         # Process the receipt using TAGGUN API
         taggun_response = process_receipt_with_taggun(filename, file_path)
         # Convert the structure to desired Json
-        desired_json = convert_to_desired_json(taggun_response)
+        desired_json = convert_to_desired_json(taggun_response, session['user'])
         json_data = json.dumps(desired_json)
         #Testing
         store_desired_json('receipt001', desired_json)
