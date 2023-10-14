@@ -2,12 +2,28 @@
 <html>
 <head>
     <title>Receipt Uploader</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style-user.css') }}">
 </head>
 <body>
+    <a href="/" class="home-button">Home</a>
+    <br>
+    <br>
+    <br>
+    <br>
+    <a href="{{ url_for('logout') }}" class="logout-button">Logout</a>
+    <br>
+    <div class="box">
+        <div class="scrollable-bar" id="scrollable-bar">
+            <!-- Content will be added dynamically here -->
+        </div>
+    </div>
     <h1>Receipt Uploader</h1>
     <form action="/upload" method="post" enctype="multipart/form-data">
-        <input type="file" name="file" accept=".pdf, .jpg, .png" required>
+        <input type="file" name="file" accept=".jpg" required>
         <button type="submit">Upload Receipt</button>
     </form>
+    <button onclick="addItem()">Add Item</button>
+
+    <script src="{{ url_for('static', filename='js/category-bar.js') }}"></script>
 </body>
 </html>
