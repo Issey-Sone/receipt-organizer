@@ -21,8 +21,8 @@
         <div class="scrollable-bar" id="scrollable-bar">
             <!-- Add your other scrollable items here -->
             {% for category in categories %}
-                <div class="scrollable-item">{{ category }}
-                    
+                <div class="scrollable-item">
+                    <a href="/category/{{ category }}">{{ category }}</a>
                 </div>
             {% endfor %}
         </div>
@@ -41,10 +41,12 @@
     </form>
     <div>
         {% for receipt in receipts %}
-        <blockquote >
-            <h2>{{ receipt.get('merchantName') }}</h2>
-            <h3>{{ receipt.get('totalAmount')}}</h3>
-            <h3>{{ receipt.get('date') }}</h3>
+        <blockquote class="receipt">
+            <h2>{{ receipt.get('merchantName', '') }}</h2>
+            <h3>${{ receipt.get('totalAmount', '')}}</h3>
+            <h3>{{ receipt.get('date', '') }}</h3>
+            <h4>{{ receipt.get('merchantAddress', '') }}</h4>
+            <br>
         </blockquote>
         {% endfor %}
     </div>

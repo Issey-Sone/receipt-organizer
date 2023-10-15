@@ -8,7 +8,7 @@ from io import BytesIO
 import pandas as pd
 from google.cloud import storage
 import openai
-
+from bson.json_util import dumps
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'asdfskfjkassdakf140-1'
@@ -151,12 +151,52 @@ def pull_categories():
             return categories
     return categories
 
+def pull_receipts(catagory):
+    receipts = []
+    try:
+        client = MongoClient(MONGODB_URI)
+        db = client[db_name]
+        collection = db[catagory]
+        cursor = collection.find({})
+        for receipt in cursor:
+            receipts.append(receipt)
+    except Exception as e:
+        print(f"An error occurred: {str(e)}")
+    finally:
+        client.close()
+    return receipts
+
+
+def get_receipt_by_id(receipt_id, category):
+    try:
+        client = MongoClient(MONGODB_URI)
+        db = client[db_name]
+        collection = db[category]
+        # Assuming 'receipts_collection' is your MongoDB collection
+        receipt = collection.find_one({'_id': receipt_id})
+        return receipt
+    except Exception as e:
+        print(f"An error occurred: {str(e)}")
+        return None
+    finally:
+        client.close()
+
 @app.route('/')
 def index():
     if 'user' not in session:
         return redirect(url_for('login'))
     categories = pull_categories()
     return render_template('index.html', categories=categories)
+
+
+@app.route('/category/<category>')
+def extend_index(category):
+    if 'user' not in session:
+        return redirect(url_for('login'))
+    categories = pull_categories()
+    receipts = pull_receipts(category)
+    return render_template('index.html', categories=categories, receipts=receipts)
+
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
