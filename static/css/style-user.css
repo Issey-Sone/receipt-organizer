@@ -1,0 +1,50 @@
+/* Apply styles to the home button */
+.home-button {
+    position: fixed;
+    top: 10px; /* Adjust the top position as needed */
+    left: 10px; /* Adjust the left position as needed */
+    padding: 10px 20px;
+    background-color: #007BFF; /* Button background color */
+    color: white; /* Button text color */
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.home-button:hover {
+    background-color: #0056b3; /* Button background color on hover */
+}
+
+.logout-button {
+    position: relative;
+    text-align: right;
+    margin-right: 0 auto ;
+}
+
+/* Apply styles to the scrollable bar */
+
+.scrollable-container {
+    max-width: 1200px;
+    overflow: auto;
+    border: 1px solid #ddd;
+    margin: 0 auto;
+
+}
+.scrollable-bar {
+   white-space: nowrap;
+   font-size: 0;
+}
+
+.scrollable-bar::-webkit-scrollbar {
+    width: 0;
+}
+
+.scrollable-bar .scrollable-item {
+    display: inline-block;
+    width: 150px;
+    height: 150px;
+    line-height: 150px;
+    text-align: center;
+    background-color: #ddd;
+    margin-right: 2px;
+    font-size: 16px;
+}
