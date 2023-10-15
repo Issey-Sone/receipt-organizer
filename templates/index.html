@@ -12,17 +12,29 @@
     <br>
     <a href="{{ url_for('logout') }}" class="logout-button">Logout</a>
     <br>
-    <div class="box">
-        <div class="scrollable-bar" id="scrollable-bar">
-            <!-- Content will be added dynamically here -->
+    <br>
+    <div class="scrollable-container">
+        <div class="scrollable-bar">
+            <div class="scrollable-item">box1</div>
+            <div class="scrollable-item">box1</div>
+            <div class="scrollable-item">box1</div>
+            <div class="scrollable-item">box1</div>
+            <div class="scrollable-item">box1</div>
+            <div class="scrollable-item">box1</div>
+            <div class="scrollable-item">box1</div>
+            <div class="scrollable-item">box1</div>
+            <div class="scrollable-item">box1</div>
+            <div class="scrollable-item">box1</div>
+            <!-- Add your other scrollable items here -->
         </div>
     </div>
+
     <h1>Receipt Uploader</h1>
     <form action="/upload" method="post" enctype="multipart/form-data">
         <input type="file" name="file" accept=".jpg" required>
         <button type="submit">Upload Receipt</button>
     </form>
-    <button onclick="addItem()">Add Item</button>
+    <button onclick="item()">Add Item</button>
 
     <script src="{{ url_for('static', filename='js/category-bar.js') }}"></script>
 </body>
