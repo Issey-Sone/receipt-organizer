@@ -121,3 +121,17 @@ h1 {
     right: 40%;
 
 }
+
+.receipt {
+    border: 2px;
+    border-color: #ddd;
+}
+
+/* Style for the hyperlink within the scrollable bar */
+.scrollable-item a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-decoration: none; /* Remove underline */
+    color: inherit; /* Inherit color from parent */
+}

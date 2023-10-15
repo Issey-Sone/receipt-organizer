@@ -7,4 +7,5 @@ please set up flask environment with the given link
 python3 -m pip install 'pymongo[srv]'
 Detail about TAGGUN OCR API
 # https://developers.taggun.io/reference/scan-your-first-receipt
+API key for openai should be store in a file outside of prohject
 
