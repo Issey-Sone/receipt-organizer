@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "strategic-grove-402000",
+  "private_key_id": "84caba0ec39e9c43b954d9d20ae17a195eb7cc55",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC0DUMFdcHW+Zld\nRbu8SccKl+IOgLlU7/OUpy/zO9DH0hctXE0c8XesSDNLkUykWOSO0qbRYZj2LmeK\n7WHmR0mn2Jlb7H7POa2Oen3VYWIcC4bPZ1xr6+7m+dDGPJQU1ThRHCGeG/2xe+TK\npYaY4Xe4phUL0pGRgXuHuYppxRyrjshfFlWXX7hkgYnsRvFHFpOIjmHLRZr3mnVV\n6mjisVTVS54CRlQ1eG3LoKEP/gRC9eP2inov9bxIUIAOMnTK60O12r+b7phVyUq8\ncQ0eJfNq7UChupmV65YQHJolqbQdhqAp8GuK50jXNx+yfr4qPQl6MDtzwxJ565RA\na+ZmmaKvAgMBAAECggEAB5UnZWt4Jl2Mn+j35w4UW9XZp1K0e2c/ktsXod67BC9M\n2pQwiy+AIrlHr78Gw0UbGwi0Dc1Wa8e4hJlKrjACYhc1HjHvhTqgnId8FShswVGa\n89Eei0z8Wq3apP6YHeh83q2YnNgA7yCQmhguevHD4PrdmAneJ4qUcTrXIW0zr+XZ\nQ70+nHJfqq6U/OauiTCZnHZu67aCPKzY68M2JN3XqUoLoqiMnEbOKLkoPmqB6ThH\nOie2eKUJGm3CwRaLMn6DWMV4VSbczREFr4dna3JuuEQP9l57HLCKxacfzdsLNLFe\nGCIVA/gx85b5KdM8mcNhw/la4PcyDdmgYBzdET6yAQKBgQDyDXNOfPVDj6MvwqoN\nNnRCX0pAqszf149s4otpiUBEHoCT78tKl2usVUf6j8wvP8V8BqkSL/m9HmkJPtq8\njBb/nqY31Puei/yhthyMFONrz9VLSTfahiOGCqC2q8b0Fz7fihFKYScfJubEJI24\nM7LRD1udV0vZ3amAoqsu6OYu4QKBgQC+bTrs+azbgS6FnoNX1VoUllcbu8tJTKZX\nDJZ5CO7KTURGe3XpQzSZb7tAI+2I+tLeb5uY8NGJ+Qkd34wBnCqKpldNp9vKrQ/t\n+3g4DYpOOCVLMhHSD3FLjRlvQfgrpKZ5QCItN12qc2G5t9Q67OUpou9v4+ENGs2+\nHx83S6LTjwKBgEw+Blrrq0mbndg2ZeABjf82Cqpx4lSDjo7KkQUuEUsjnHZ8qrkV\nFvpSZni7AKLFYIwfgPPUnsJ+KLGb1cRcEAZ2T374nEUlbO728OkCz1uvPE0Zg/lW\nFSxsfpDrbKCIDerVj3qxPWRnmXqg1O73gdSuFLpru92lH3YARxFglNihAoGADlzQ\nt/Tw67Fnn95fy60k2S6prUbRw1qLpT8mzkQ1Nn7zall/gDN4cSYzOlg7XzyD0REb\n7EIlm8FzxZQJzElKECERrqK9eiDpdaqk251x1Ap6DZzeKTjO88LVq0WPgUMu5zBG\nI6DsaKHBOi+6SyN4+VX3tzm5zLI72F4ijZof0tMCgYEAq2DW+n067u1kkRdiL1Vu\neAis6ogxQnWvNu9VGQYN7twoWWfTkReKj3Dqv7zv29CiaGLrp8XRuiRfNQAS0+WO\nV8JJYwHlJHU8ExHQk/mSTSLRqCZQYuepYgDwQAUVqpYEmNlznAG+8tn4pLPWp7US\n8RN1EySUy6AI9wgFd9eSnCc=\n-----END PRIVATE KEY-----\n",
+  "client_email": "first-service-account@strategic-grove-402000.iam.gserviceaccount.com",
+  "client_id": "113783539939199092218",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/first-service-account%40strategic-grove-402000.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
