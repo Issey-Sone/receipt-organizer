@@ -13,8 +13,13 @@ from bson.json_util import dumps
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'asdfskfjkassdakf140-1'
 
+def read_api_key_from_file(filepath):
+    with open(filepath, 'r') as file:
+        api_key = file.read().strip()
+    return api_key
+
 #chatgpt
-openai.api_key = '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'
+openai.api_key = read_api_key_from_file('openai_api_key.txt')
 
 # Directory to store uploaded receipts
 UPLOAD_FOLDER = 'uploads'
@@ -31,6 +36,9 @@ db_name = 'receiptOrganizer'
 #Google Cloud
 json_key_path = "strategic-grove.json"
 bucket_name = "receipts001"
+
+
+
 
 def generating_category(desired_json):
     messages = [ {"role": "system", "content":  
@@ -157,7 +165,7 @@ def pull_receipts(catagory):
         client = MongoClient(MONGODB_URI)
         db = client[db_name]
         collection = db[catagory]
-        cursor = collection.find({})
+        cursor = collection.find({'username': session['user']})
         for receipt in cursor:
             receipts.append(receipt)
     except Exception as e:
