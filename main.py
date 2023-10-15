@@ -140,14 +140,23 @@ def insert_user(username, password):
     client.close()
 
 
-# def pull_category():
+def pull_categories():
+    client = MongoClient(MONGODB_URI)
+    db = client[db_name]
+    categories = db.list_collection_names()
+    client.close()
+    for i in range(len(categories)):
+        if categories[i] == 'users':
+            categories.pop(i)
+            return categories
+    return categories
 
 @app.route('/')
 def index():
     if 'user' not in session:
         return redirect(url_for('login'))
-    
-    return render_template('index.html')
+    categories = pull_categories()
+    return render_template('index.html', categories=categories)
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
@@ -185,6 +194,7 @@ def logout():
     # Implement your logout logic
     session.clear()
     return redirect(url_for('login'))
+
 
 @app.route('/upload', methods=['POST'])
 def upload_receipt():

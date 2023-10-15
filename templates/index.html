@@ -16,16 +16,27 @@
     <div class="scrollable-container">
         <div class="scrollable-bar" id="scrollable-bar">
             <!-- Add your other scrollable items here -->
+            {% for category in categories %}
+                <div class="scrollable-item">{{ category }}
+                    
+                </div>
+            {% endfor %}
         </div>
     </div>
-
     <h1>Receipt Uploader</h1>
     <form action="/upload" method="post" enctype="multipart/form-data">
         <input type="file" name="file" accept=".jpg" required>
         <button type="submit">Upload Receipt</button>
     </form>
-    <button onclick="addItem()">Add Item</button>
-
+    <div>
+        {% for receipt in receipts %}
+        <blockquote >
+            <h2>{{ receipt.get('merchantName') }}</h2>
+            <h3>{{ receipt.get('totalAmount')}}</h3>
+            <h3>{{ receipt.get('date') }}</h3>
+        </blockquote>
+        {% endfor %}
+    </div>
     <script src="{{ url_for('static', filename='js/category-bar.js') }}"></script>
 </body>
 </html>
