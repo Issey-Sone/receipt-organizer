@@ -1,23 +1,62 @@
 /* Apply styles to the home button */
 .home-button {
     position: fixed;
-    top: 10px; /* Adjust the top position as needed */
-    left: 10px; /* Adjust the left position as needed */
+    top: 52px; /* Adjust the top position as needed */
+    left: 12px; /* Adjust the left position as needed */
     padding: 10px 20px;
-    background-color: #007BFF; /* Button background color */
-    color: white; /* Button text color */
+    background-color: #ECEFF4; /* Button background color */
+    color: #2E3440; /* Button text color */
     text-decoration: none;
     border-radius: 5px;
+    transition: 0.3s;
 }
 
+* {
+    font-family: Consolas;
+}
 .home-button:hover {
-    background-color: #0056b3; /* Button background color on hover */
+    background-color: #E5E9F0; /* Button background color on hover */
+    transform: scale(1.05, 1);
 }
 
-.logout-button {
-    position: relative;
-    text-align: right;
-    margin-right: 0 auto ;
+body {
+    background-color: #4C566A;
+    justify-content: center;
+   
+}
+
+
+.logout-button label {
+    position: absolute;
+    top: 8%;
+    right: 3.90%;
+    color: #2E3440;
+    cursor: pointer;
+
+}
+.logout-btn {
+    margin-right: 2%;
+}
+
+.logout-btn:hover {
+    background: #E5E9F0;
+    transform: scale(1.05, 1);
+}
+
+
+
+
+.logout-btn {
+    width: 7%;
+    position: absolute;
+    height: 30px;
+    right: 0%;
+    top: 7.5%;
+    background: #ECEFF4; 
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: 0.3s;
 }
 
 /* Apply styles to the scrollable bar */

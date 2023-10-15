@@ -5,12 +5,15 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style-user.css') }}">
 </head>
 <body>
+    <br>
+    <br>
+    <br>
+    <br>
     <a href="/" class="home-button">Home</a>
-    <br>
-    <br>
-    <br>
-    <br>
-    <a href="{{ url_for('logout') }}" class="logout-button">Logout</a>
+    <div class="logout-button">
+        <a href="/login" class="logout-btn" id="logout"></a>
+        <label for="logout">Logout</label>
+    </div>
     <br>
     <br>
     <div class="scrollable-container">
