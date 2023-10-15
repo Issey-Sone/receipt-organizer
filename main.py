@@ -14,7 +14,7 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = 'asdfskfjkassdakf140-1'
 
 #chatgpt
-openai.api_key = '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'
+openai.api_key = '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'
 
 # Directory to store uploaded receipts
 UPLOAD_FOLDER = 'uploads'
