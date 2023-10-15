@@ -10,12 +10,11 @@ from google.cloud import storage
 import openai
 
 
-
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'asdfskfjkassdakf140-1'
 
 #chatgpt
-openai.api_key = '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'
+openai.api_key = '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'
 
 # Directory to store uploaded receipts
 UPLOAD_FOLDER = 'uploads'
@@ -110,10 +109,6 @@ def convert_to_desired_json(taggun_response, username):
 def store_desired_json(collection_name, desired_json):
     client = MongoClient(MONGODB_URI)
     db = client[db_name]
-    try:
-        db.validate_collection(collection_name) # Try to validate a collection
-    except errors.OperationFailure:
-        db.create_collection(collection_name)
     collection = db[collection_name]
     collection.insert_one(desired_json)
     client.close()
