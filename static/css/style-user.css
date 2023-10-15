@@ -4,7 +4,7 @@
     top: 10px; /* Adjust the top position as needed */
     left: 10px; /* Adjust the left position as needed */
     padding: 10px 20px;
-    background-color: #007BFF; /* Button background color */
+    background-color: r007BFF; /* Button background color */
     color: white; /* Button text color */
     text-decoration: none;
     border-radius: 5px;
@@ -14,10 +14,36 @@
     background-color: #0056b3; /* Button background color on hover */
 }
 
-.logout-button {
-    position: relative;
-    text-align: right;
-    margin-right: 0 auto ;
+body {
+    background-color: #4C566A;
+    justify-content: center;
+   
+}
+
+
+.logout-button label {
+    position: absolute;
+    top: 8%;
+    right: 3.90%;
+    color: #000;
+    cursor: pointer;
+}
+.logout-btn {
+    margin-right: 2%;
+}
+
+
+.logout-btn {
+    width: 7%;
+    position: absolute;
+    height: 30px;
+    right: 0%;
+    top: 7.5%;
+    background: #ECEFF4; 
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: 0.3s;
 }
 
 /* Apply styles to the scrollable bar */
