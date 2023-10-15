@@ -8,6 +8,18 @@
     <title>Sign Up Page</title>
 </head>
 <body>
+    {% with messages = get_flashed_messages() %}
+        <!-- if there are messages -->
+        {% if messages %}
+        <ul class="flashes">
+        <!-- loop through all messages -->
+        {% for message in messages %}
+            <!-- show the message -->
+            <div class="msg"> {{ message }} </div>
+        {% endfor %}
+        </ul>
+        {% endif %}
+    {% endwith %}
     <form method="POST" action="/signup">
         <div class="signup-box">
             <div class="signup-header">

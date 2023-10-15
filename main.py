@@ -1,7 +1,7 @@
 import os
 import pprint
 import requests
-from flask import Flask, request, render_template, jsonify, redirect, url_for, session
+from flask import Flask, request, render_template, jsonify, redirect, url_for, session, flash
 import json
 from pymongo import MongoClient, errors
 from io import BytesIO
@@ -144,10 +144,14 @@ def insert_user(username, password):
     user_collection.insert_one(query)
     client.close()
 
+
+# def pull_category():
+
 @app.route('/')
 def index():
     if 'user' not in session:
         return redirect(url_for('login'))
+    
     return render_template('index.html')
 
 @app.route('/signup', methods=['GET', 'POST'])
@@ -158,10 +162,11 @@ def signup():
         password = request.form['password']
         # Store the user information in MongoDB (you may want to hash the password)
         if check_existense(username):
-            return 'Account Already Exist'
-        insert_user(username, password)
-        return 'Account created successfully!'
-
+            flash(f'{username} already exist') 
+        else:
+            insert_user(username, password)
+            flash(f'{username} created successfully!')
+        return redirect(url_for('signup'))
     return render_template('signup.html')
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -174,9 +179,10 @@ def login():
                 session['user'] = username
                 return redirect(url_for('index'))
             else:
-                return 'wrong password'
+                flash('wrong password')
         else:
-            return "username not exist"
+            flash(f"{username} not exist")
+        return redirect(url_for('login'))
     return render_template('login.html')
 
 @app.route('/logout')
@@ -202,9 +208,9 @@ def upload_receipt():
         # json_data = json.dumps(desired_json)
         store_desired_json(category, desired_json)
         upload_image_to_gcs(filename, file_path, category)
-        return category
-
-    return "No file selected."
+        flash('successful upload receipt')
+    flash('no such file exist')
+    return redirect(url_for('index'))
 
 if __name__ == '__main__':
     app.run(debug=True)
