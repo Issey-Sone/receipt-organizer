@@ -3,20 +3,67 @@ import pprint
 import requests
 from flask import Flask, request, render_template, jsonify, redirect, url_for, session, flash
 import json
-from pymongo import MongoClient
+from pymongo import MongoClient, errors
+from io import BytesIO
+import pandas as pd
+from google.cloud import storage
+import openai
+
 
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'asdfskfjkassdakf140-1'
+
+#chatgpt
+openai.api_key = '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'
+
 # Directory to store uploaded receipts
 UPLOAD_FOLDER = 'uploads'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
+#Taggun OCR
 TAGGUN_API_URL = "https://api.taggun.io/api/receipt/v1/verbose/file"
 TAGGUN_API_KEY = "7aa60b606a0f11eea8f313266e4aecd5"
 
+#mongoDB
 MONGODB_URI = 'mongodb+srv://Bomb3077:Pxmf3cmQ80EdLwoa@cluster0.arkmrqj.mongodb.net/?retryWrites=true&w=majority'
 db_name = 'receiptOrganizer'
+
+#Google Cloud
+json_key_path = "strategic-grove.json"
+bucket_name = "receipts001"
+
+def generating_category(desired_json):
+    messages = [ {"role": "system", "content":  
+              "You are a receipt organizer that return the category in one single word based on the merchant name and products given."} ]
+    message = "Merchant name is " + desired_json.get("merchantName") + "and items are "
+    for item in desired_json.get("productLineItems", []):
+        message += item.get('name', '')
+        message += ", "
+    messages.append({"role": "user", "content": message})
+    chat = openai.ChatCompletion.create(model="gpt-3.5-turbo", messages=messages)
+    category = chat.choices[0].message.content
+    return category
+
+
+def upload_image_to_gcs(image_name, file_path, category):
+
+    # Create a client using the service account JSON file
+    storage_client = storage.Client.from_service_account_json(json_key_path)
+
+    # Get the bucket
+    bucket = storage_client.bucket(bucket_name)
+
+    # Define the destination blob
+    destination_blob_name = f"{category}/{image_name}.jpg"
+    blob = bucket.blob(destination_blob_name)
+    blob.content_type = "image/jpeg"
+
+    # Upload the file
+    with open(file_path, "rb") as f:
+        blob.upload_from_file(f)
+
+    print("Image Uploaded:", destination_blob_name)
 
 
 def process_receipt_with_taggun(filename, file_path):
@@ -63,6 +110,10 @@ def convert_to_desired_json(taggun_response, username):
 def store_desired_json(collection_name, desired_json):
     client = MongoClient(MONGODB_URI)
     db = client[db_name]
+    try:
+        db.validate_collection(collection_name) # Try to validate a collection
+    except errors.OperationFailure:
+        db.create_collection(collection_name)
     collection = db[collection_name]
     collection.insert_one(desired_json)
     client.close()
