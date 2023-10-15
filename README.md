@@ -1,6 +1,6 @@
 receipt-organizer
 please install all the necessary packagees below in Python such that
-pip install google-cloud-storage flask requests-toolbelt pymongo
+pip install google-cloud-storage flask requests-toolbelt pymongo openai
 python -m pip install requests
 please set up flask environment with the given link
 # https://flask.palletsprojects.com/en/3.0.x/installation/#virtual-environments
