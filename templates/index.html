@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>Receipt Uploader</title>
+    <h1>Receipt Uploader</h1>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style-user.css') }}">
 </head>
 <body>
@@ -22,13 +23,18 @@
         </div>
     </div>
 
-    <h1>Receipt Uploader</h1>
-    <form action="/upload" method="post" enctype="multipart/form-data">
-        <input type="file" name="file" accept=".jpg" required>
-        <button type="submit">Upload Receipt</button>
-    </form>
-    <button onclick="addItem()">Add Item</button>
 
-    <script src="{{ url_for('static', filename='js/category-bar.js') }}"></script>
+    
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <div class="file-box">
+            <div class="choose-box">
+                <input type="file" name="file" accept=".jpg" required>
+            </div>
+            <div class="upload-button">
+                <button class="upload-btn" type="submit" id="submit"></button>
+                <label for="submit">Upload Receipt</label>
+            </div>
+        </div>
+    </form>
 </body>
 </html>
